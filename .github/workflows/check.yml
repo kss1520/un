@@ -3,7 +3,7 @@ name: Duyuru kontrol
 # Ne zaman çalışsın?
 on:
   schedule:
-    - cron: "0 6 * * *"   # her gün 06:00 UTC (~09:00 Türkiye) — günde 1 kez
+    - cron: "0 */6 * * *"   # 6 saatte bir: 00/06/12/18 UTC (TR ~03/09/15/21)
   workflow_dispatch: {}    # istersek elle de çalıştırabilelim (butonla)
 
 permissions:
