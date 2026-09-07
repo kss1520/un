@@ -217,14 +217,20 @@ footer a { color: var(--petrol); font-weight: 600; }
 /* ===== Buton grubu + gündüz/gece tema butonu ===== */
 .btn-grup { display: flex; align-items: center; gap: 8px; }
 .tema-btn {
-    width: 38px; height: 38px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
     background: var(--kart);
     color: var(--metin);
     border: 1px solid var(--kenarlik);
     border-radius: 999px;
-    font-size: 16px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 600;
     line-height: 1;
     cursor: pointer;
+    white-space: nowrap;
     transition: border-color .15s, transform .1s;
 }
 .tema-btn:hover { border-color: var(--petrol); }

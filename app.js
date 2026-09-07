@@ -105,15 +105,14 @@ async function yukle() {
     }
 }
 
-el("yenileBtn").addEventListener("click", yukle);
 el("aramaKutusu").addEventListener("input", ciz);
 yukle();
 
 // ===== Gündüz / gece tema =====
 function temaUygula(t) {
     document.documentElement.setAttribute("data-theme", t);
-    // Işık modunda ay (geceye geç), gece modunda güneş (gündüze geç) göster
-    el("temaBtn").textContent = (t === "dark") ? "☀️" : "🌙";
+    // Butonda "hangi moda geçilecek" yazsın: gündüzken "Gece", geceyken "Gündüz"
+    el("temaBtn").textContent = (t === "dark") ? "☀️ Gündüz" : "🌙 Gece";
 }
 function temaBaslat() {
     let t = null;
