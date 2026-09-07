@@ -9,6 +9,17 @@
     <link rel="icon" href="icons/icon-192.png">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
     <link rel="stylesheet" href="style.css">
+    <script>
+        // Temayı sayfa çizilmeden önce ayarla (ekran titremesin).
+        // Kayıtlı tercih varsa onu, yoksa telefonun sistem tercihini kullan.
+        (function () {
+            try {
+                var t = localStorage.getItem("tema");
+                if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+                document.documentElement.setAttribute("data-theme", t);
+            } catch (e) {}
+        })();
+    </script>
 </head>
 <body>
 
@@ -24,7 +35,10 @@
 
     <div class="arac-cubugu">
         <span class="guncelleme">Son güncelleme: <strong id="guncelleme">—</strong></span>
-        <button class="yenile-btn" id="yenileBtn">↻ Yenile</button>
+        <div class="btn-grup">
+            <button class="tema-btn" id="temaBtn" title="Gündüz / gece tema" aria-label="Tema değiştir">🌙</button>
+            <button class="yenile-btn" id="yenileBtn">↻ Yenile</button>
+        </div>
     </div>
 
     <div class="arama-satir">

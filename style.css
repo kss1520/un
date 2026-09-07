@@ -213,3 +213,39 @@ footer a { color: var(--petrol); font-weight: 600; }
     flex-wrap: wrap;
 }
 .haber-ust .yeni-rozet { margin-bottom: 0; }
+
+/* ===== Buton grubu + gündüz/gece tema butonu ===== */
+.btn-grup { display: flex; align-items: center; gap: 8px; }
+.tema-btn {
+    width: 38px; height: 38px;
+    background: var(--kart);
+    color: var(--metin);
+    border: 1px solid var(--kenarlik);
+    border-radius: 999px;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color .15s, transform .1s;
+}
+.tema-btn:hover { border-color: var(--petrol); }
+.tema-btn:active { transform: scale(.94); }
+
+/* ===== Karanlık (gece) tema ===== */
+:root[data-theme="dark"] {
+    --lacivert:      #16233a;
+    --lacivert-koyu: #0d1626;
+    --petrol:        #2f9aa5;
+    --arka:          #0f1621;
+    --kart:          #1a2434;
+    --metin:         #e7ecf3;
+    --gri:           #98a6b6;
+    --kenarlik:      #2a3648;
+}
+:root[data-theme="dark"] .tarih-rozet { background: #223350; }
+:root[data-theme="dark"] .haber-tarih {
+    background: #24303f;
+    color: #bcd6df;
+    border-color: #33465c;
+}
+:root[data-theme="dark"] .kart:hover { box-shadow: 0 8px 20px rgba(0,0,0,.45); }
+:root[data-theme="dark"] .arama-kutu::placeholder { color: #7f8ea3; }

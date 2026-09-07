@@ -109,6 +109,29 @@ el("yenileBtn").addEventListener("click", yukle);
 el("aramaKutusu").addEventListener("input", ciz);
 yukle();
 
+// ===== Gündüz / gece tema =====
+function temaUygula(t) {
+    document.documentElement.setAttribute("data-theme", t);
+    // Işık modunda ay (geceye geç), gece modunda güneş (gündüze geç) göster
+    el("temaBtn").textContent = (t === "dark") ? "☀️" : "🌙";
+}
+function temaBaslat() {
+    let t = null;
+    try { t = localStorage.getItem("tema"); } catch (e) {}
+    if (!t) {
+        t = (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches)
+            ? "dark" : "light";
+    }
+    temaUygula(t);
+}
+el("temaBtn").addEventListener("click", () => {
+    const suanki = document.documentElement.getAttribute("data-theme");
+    const yeni = (suanki === "dark") ? "light" : "dark";
+    try { localStorage.setItem("tema", yeni); } catch (e) {}
+    temaUygula(yeni);
+});
+temaBaslat();
+
 // Service worker: uygulama gibi kurulabilsin + çevrimdışı açılsın
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").catch((e) =>
