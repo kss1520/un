@@ -10,8 +10,7 @@
     <link rel="apple-touch-icon" href="icons/icon-192.png">
     <link rel="stylesheet" href="style.css">
     <script>
-        // Temayı sayfa çizilmeden önce ayarla (ekran titremesin).
-        // Kayıtlı tercih varsa onu, yoksa telefonun sistem tercihini kullan.
+        // Temayı sayfa çizilmeden ayarla (ekran titremesin)
         (function () {
             try {
                 var t = localStorage.getItem("tema");
@@ -38,20 +37,40 @@
         <button class="tema-btn" id="temaBtn" title="Gündüz / gece tema" aria-label="Gündüz/gece tema değiştir">🌙 Gece</button>
     </div>
 
+    <!-- Hızlı kısayollar -->
+    <nav class="kisayollar" aria-label="Hızlı erişim">
+        <a href="https://ubys.gibtu.edu.tr/" target="_blank" rel="noopener">🎓 OBS</a>
+        <a href="https://mail.gibtu.edu.tr/" target="_blank" rel="noopener">✉️ E-Posta</a>
+        <a href="https://www.gibtu.edu.tr/akademiktakvim" target="_blank" rel="noopener">📅 Akademik Takvim</a>
+        <a href="https://www.gibtu.edu.tr/yemeklistesi" target="_blank" rel="noopener">🍽️ Yemek Listesi</a>
+        <a href="https://www.gibtu.edu.tr/kutuphane" target="_blank" rel="noopener">📚 Kütüphane</a>
+        <a href="https://www.gibtu.edu.tr/ogrenciisleri" target="_blank" rel="noopener">🗂️ Öğrenci İşleri</a>
+    </nav>
+
+    <!-- Arama -->
     <div class="arama-satir">
         <input id="aramaKutusu" class="arama-kutu" type="search"
                placeholder="🔎 Duyuru veya haber ara…" autocomplete="off">
     </div>
 
+    <!-- Kategori / favori filtreleri -->
+    <div class="filtre-satir" id="filtreSatir">
+        <button class="cip aktif" data-f="hepsi">Tümü</button>
+        <button class="cip" data-f="duyuru">📢 Duyurular</button>
+        <button class="cip" data-f="haber">📰 Haberler</button>
+        <button class="cip" data-f="favori">⭐ Kaydedilenler</button>
+    </div>
+
     <main>
         <div id="hata" class="hata-kutu" hidden></div>
+        <p id="bosFavori" class="bos" hidden>Henüz bir şey kaydetmedin. Kartlardaki ☆ ile kaydedebilirsin.</p>
 
-        <section>
+        <section id="secDuyuru">
             <h2 class="bolum-baslik">📢 Duyurular <span class="sayi" id="duyuruSayi"></span></h2>
             <div class="kart-grid" id="duyurular"></div>
         </section>
 
-        <section>
+        <section id="secHaber">
             <h2 class="bolum-baslik">📰 Haberler <span class="sayi" id="haberSayi"></span></h2>
             <div class="kart-grid" id="haberler"></div>
         </section>
@@ -61,6 +80,18 @@
         <p>Bu bir <strong>öğrenci projesidir</strong>, resmî site değildir.
            Tüm içerikler <a href="https://www.gibtu.edu.tr/" target="_blank" rel="noopener">gibtu.edu.tr</a> adresinden alınmıştır.</p>
     </footer>
+
+    <!-- Uygulama içi okuma penceresi -->
+    <div id="okuOverlay" class="oku-overlay" hidden>
+        <div class="oku-kutu" role="dialog" aria-modal="true" aria-labelledby="okuBaslik">
+            <button class="oku-kapat" id="okuKapat" aria-label="Kapat">✕</button>
+            <span class="oku-tur" id="okuTur"></span>
+            <h2 id="okuBaslik"></h2>
+            <div class="oku-tarih" id="okuTarih"></div>
+            <div class="oku-metin" id="okuMetin"></div>
+            <a class="oku-kaynak" id="okuKaynak" href="#" target="_blank" rel="noopener">Orijinal sayfada aç ↗</a>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>

@@ -1,76 +1,143 @@
-// app.js — sayfayı çalıştıran JavaScript.
-// data/duyurular.json'u okur; arama yapar; son ziyaretten beri gelenlere
-// "YENİ" rozeti koyar.
+// app.js — GİBTÜ Duyuru Takip
+// Özellikler: liste + arama + YENİ rozeti + favoriler + kategori filtresi
+// + uygulama içi okuma + gündüz/gece tema.
 
 const el = (id) => document.getElementById(id);
 
-// Bellekte tutulan veri + YENİ hesabı için durum
+// ---- Durum ----
 let VERI = { duyurular: [], haberler: [] };
+let HARITA = {};          // id -> öğe (okuma penceresi için)
 let ILK_ZIYARET = false;
-let SON_GORULEN = 0;   // en son bakışta görülen en büyük id
+let SON_GORULEN = 0;      // YENİ hesabı
+let FAVORILER = new Set(); // kaydedilen id'ler
+let AKTIF_FILTRE = "hepsi"; // hepsi | duyuru | haber | favori
 
-// Metni HTML'e basmadan önce güvenli hale getir
-function guvenli(metin) {
-    return String(metin == null ? "" : metin).replace(/[&<>"]/g, (c) => (
+// ---- Yardımcılar ----
+function guvenli(m) {
+    return String(m == null ? "" : m).replace(/[&<>"]/g, (c) => (
         { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]
     ));
 }
+function kucuk(s) { return String(s || "").toLocaleLowerCase("tr"); }
+function yeniMi(id) { return !ILK_ZIYARET && id > SON_GORULEN; }
+function favoriMi(id) { return FAVORILER.has(id); }
 
-// Türkçe'ye uygun küçük harfe çevir (arama için)
-function kucuk(s) {
-    return String(s || "").toLocaleLowerCase("tr");
+function favorileriKaydet() {
+    try { localStorage.setItem("favoriler", JSON.stringify([...FAVORILER])); } catch (e) {}
+}
+function favoriToggle(id) {
+    if (FAVORILER.has(id)) FAVORILER.delete(id); else FAVORILER.add(id);
+    favorileriKaydet();
+    ciz();
 }
 
-// Bu içerik son ziyaretten sonra mı geldi?
-function yeniMi(id) {
-    return !ILK_ZIYARET && id > SON_GORULEN;
+// ---- Kart şablonları ----
+function yildiz(id) {
+    const dolu = favoriMi(id);
+    return `<span class="yildiz ${dolu ? "dolu" : ""}" data-yildiz="${id}" role="button"
+        title="${dolu ? "Kaydı kaldır" : "Kaydet"}" aria-label="Kaydet">${dolu ? "★" : "☆"}</span>`;
 }
-
 function yeniRozet(id) {
     return yeniMi(id) ? '<span class="yeni-rozet">YENİ</span>' : "";
 }
-
 function duyuruKarti(d) {
-    return `<a class="kart duyuru-kart" href="${guvenli(d.link)}" target="_blank" rel="noopener">
+    return `<div class="kart duyuru-kart" data-id="${d.id}">
+        ${yildiz(d.id)}
         <div class="tarih-rozet"><span class="rz-gun">${guvenli(d.gun)}</span><span class="rz-ay">${guvenli(d.ay)}</span></div>
         <div class="kart-govde">${yeniRozet(d.id)}<p class="kart-baslik">${guvenli(d.baslik)}</p></div>
-    </a>`;
+    </div>`;
 }
-
 function haberKarti(h) {
     const ozet = h.ozet ? `<p class="haber-ozet">${guvenli(h.ozet)}</p>` : "";
-    return `<a class="kart haber-kart" href="${guvenli(h.link)}" target="_blank" rel="noopener">
+    return `<div class="kart haber-kart" data-id="${h.id}">
+        ${yildiz(h.id)}
         <div class="haber-ust"><span class="haber-tarih">${guvenli(h.tarih)}</span>${yeniRozet(h.id)}</div>
         <p class="kart-baslik">${guvenli(h.baslik)}</p>
         ${ozet}
-    </a>`;
+    </div>`;
 }
 
-// Arama metnine göre listeyi süz (başlıkta arar)
 function suz(liste, q) {
     if (!q) return liste;
     const s = kucuk(q);
-    return liste.filter((x) => kucuk(x.baslik).includes(s));
+    return liste.filter((x) => kucuk(x.baslik).includes(s) || kucuk(x.ozet).includes(s));
 }
 
-function bosMesaj(q) {
-    return q
-        ? '<p class="bos">Aramaya uygun sonuç yok.</p>'
-        : '<p class="bos">Şu an gösterilecek içerik yok.</p>';
+// Aktif filtre + aramaya göre gösterilecek liste
+function gorunenler(tur) {
+    let liste = (tur === "duyuru" ? VERI.duyurular : VERI.haberler) || [];
+    if (AKTIF_FILTRE === "favori") liste = liste.filter((x) => favoriMi(x.id));
+    return suz(liste, el("aramaKutusu").value.trim());
 }
 
-// Ekranı (yeniden) çiz — hem ilk yüklemede hem arama yazıldıkça çalışır
 function ciz() {
-    const q = el("aramaKutusu").value.trim();
-    const d = suz(VERI.duyurular || [], q);
-    const h = suz(VERI.haberler || [], q);
+    const d = gorunenler("duyuru");
+    const h = gorunenler("haber");
 
-    el("duyurular").innerHTML = d.map(duyuruKarti).join("") || bosMesaj(q);
-    el("haberler").innerHTML = h.map(haberKarti).join("") || bosMesaj(q);
+    el("duyurular").innerHTML = d.map(duyuruKarti).join("");
+    el("haberler").innerHTML = h.map(haberKarti).join("");
     el("duyuruSayi").textContent = d.length ? `(${d.length})` : "";
     el("haberSayi").textContent = h.length ? `(${h.length})` : "";
+
+    // Hangi bölümler görünsün?
+    const duyuruGoster = (AKTIF_FILTRE === "hepsi" || AKTIF_FILTRE === "duyuru" ||
+                          (AKTIF_FILTRE === "favori" && d.length > 0));
+    const haberGoster = (AKTIF_FILTRE === "hepsi" || AKTIF_FILTRE === "haber" ||
+                         (AKTIF_FILTRE === "favori" && h.length > 0));
+    el("secDuyuru").hidden = !duyuruGoster;
+    el("secHaber").hidden = !haberGoster;
+
+    // Favorilerde hiç sonuç yoksa mesaj göster
+    el("bosFavori").hidden = !(AKTIF_FILTRE === "favori" && d.length === 0 && h.length === 0);
 }
 
+// ---- Okuma penceresi ----
+function oku(id) {
+    const o = HARITA[id];
+    if (!o) return;
+    el("okuTur").textContent = o.kategori || "";
+    el("okuBaslik").textContent = o.baslik || "";
+    el("okuTarih").textContent = "Yayın tarihi: " + (o.tarih || "");
+    const metin = (o.icerik && o.icerik.trim()) ? o.icerik
+                 : (o.ozet && o.ozet.trim()) ? o.ozet
+                 : "Bu içeriğin metni alınamadı. Aşağıdan orijinal sayfada açabilirsin.";
+    el("okuMetin").textContent = metin;   // textContent => güvenli, satır sonları CSS ile korunur
+    el("okuKaynak").href = o.link || "#";
+    el("okuOverlay").hidden = false;
+    document.body.classList.add("kilit");
+}
+function okuKapat() {
+    el("okuOverlay").hidden = true;
+    document.body.classList.remove("kilit");
+}
+
+// ---- Olay dinleyiciler ----
+// Kartlara tıklama (yıldız = favori, diğer yer = oku)
+document.querySelector("main").addEventListener("click", (e) => {
+    const yild = e.target.closest("[data-yildiz]");
+    if (yild) {
+        favoriToggle(parseInt(yild.getAttribute("data-yildiz"), 10));
+        return;
+    }
+    const kart = e.target.closest(".kart");
+    if (kart) oku(parseInt(kart.getAttribute("data-id"), 10));
+});
+
+// Filtre çipleri
+el("filtreSatir").addEventListener("click", (e) => {
+    const cip = e.target.closest(".cip");
+    if (!cip) return;
+    AKTIF_FILTRE = cip.getAttribute("data-f");
+    [...el("filtreSatir").children].forEach((c) => c.classList.toggle("aktif", c === cip));
+    ciz();
+});
+
+el("aramaKutusu").addEventListener("input", ciz);
+el("okuKapat").addEventListener("click", okuKapat);
+el("okuOverlay").addEventListener("click", (e) => { if (e.target === el("okuOverlay")) okuKapat(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") okuKapat(); });
+
+// ---- Veri yükle ----
 async function yukle() {
     try {
         const cevap = await fetch("data/duyurular.json?_=" + Date.now());
@@ -78,25 +145,30 @@ async function yukle() {
         VERI = await cevap.json();
         el("guncelleme").textContent = VERI.guncelleme || "—";
 
-        // "YENİ" için: en son görülen id'yi hafızadan (localStorage) oku
+        // id -> öğe haritası (okuma için)
+        HARITA = {};
+        [...(VERI.duyurular || []), ...(VERI.haberler || [])].forEach((x) => { HARITA[x.id] = x; });
+
+        // Favoriler
+        try {
+            const f = JSON.parse(localStorage.getItem("favoriler") || "[]");
+            FAVORILER = new Set(f);
+        } catch (e) { FAVORILER = new Set(); }
+
+        // YENİ hesabı
         try {
             const kayit = localStorage.getItem("sonGorulenId");
-            ILK_ZIYARET = !kayit;                       // ilk açılışta rozet gösterme
+            ILK_ZIYARET = !kayit;
             SON_GORULEN = parseInt(kayit || "0", 10) || 0;
-        } catch (e) {
-            ILK_ZIYARET = true;
-            SON_GORULEN = 0;
-        }
+        } catch (e) { ILK_ZIYARET = true; SON_GORULEN = 0; }
 
         ciz();
 
-        // Şimdi "görüldü" say: en büyük id'yi kaydet (rozet in-memory kalır,
-        // sonraki AÇILIŞTA sıfırlanır)
         try {
-            const idler = [...(VERI.duyurular || []), ...(VERI.haberler || [])].map((x) => x.id || 0);
+            const idler = Object.keys(HARITA).map(Number);
             const enBuyuk = idler.length ? Math.max(...idler) : 0;
             localStorage.setItem("sonGorulenId", String(enBuyuk));
-        } catch (e) { /* localStorage kapalıysa sorun değil */ }
+        } catch (e) {}
 
         el("hata").hidden = true;
     } catch (e) {
@@ -104,36 +176,27 @@ async function yukle() {
         el("hata").textContent = "⚠️ Veriler yüklenemedi: " + e.message;
     }
 }
-
-el("aramaKutusu").addEventListener("input", ciz);
 yukle();
 
-// ===== Gündüz / gece tema =====
+// ---- Gündüz / gece tema ----
 function temaUygula(t) {
     document.documentElement.setAttribute("data-theme", t);
-    // Butonda "hangi moda geçilecek" yazsın: gündüzken "Gece", geceyken "Gündüz"
     el("temaBtn").textContent = (t === "dark") ? "☀️ Gündüz" : "🌙 Gece";
 }
 function temaBaslat() {
     let t = null;
     try { t = localStorage.getItem("tema"); } catch (e) {}
-    if (!t) {
-        t = (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches)
-            ? "dark" : "light";
-    }
+    if (!t) t = (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
     temaUygula(t);
 }
 el("temaBtn").addEventListener("click", () => {
-    const suanki = document.documentElement.getAttribute("data-theme");
-    const yeni = (suanki === "dark") ? "light" : "dark";
+    const yeni = (document.documentElement.getAttribute("data-theme") === "dark") ? "light" : "dark";
     try { localStorage.setItem("tema", yeni); } catch (e) {}
     temaUygula(yeni);
 });
 temaBaslat();
 
-// Service worker: uygulama gibi kurulabilsin + çevrimdışı açılsın
+// ---- Service worker ----
 if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js").catch((e) =>
-        console.log("Service worker kaydı başarısız:", e)
-    );
+    navigator.serviceWorker.register("sw.js").catch((e) => console.log("SW:", e));
 }

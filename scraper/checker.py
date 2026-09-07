@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
 """
-checker.py — GİBTÜ İçerik Arşivi'ni okur, DUYURULAR + HABERLER'i
-../data/duyurular.json dosyasına yazar.
+checker.py — GİBTÜ İçerik Arşivi'ni okur, DUYURULAR + HABERLER'i (her birinin
+tam metniyle birlikte) ../data/duyurular.json dosyasına yazar.
 
-Kaynak: https://www.gibtu.edu.tr/IcerikRehberi.aspx
-Bu sayfa bir tablo: her satırda  Başlık | Kategori | Yayın Tarihi  var.
-Ana sayfadaki 8 kayıt yerine buradan ~50 kayıt geliyor; kategori sütunu
-sayesinde Duyuru / Haber ayrımını da yapabiliyoruz.
+Kaynak liste: https://www.gibtu.edu.tr/IcerikRehberi.aspx  (tablo)
+Her satır:  Başlık | Kategori | Yayın Tarihi
+Sonra her içeriğin detay sayfasına gidip tam metnini (icerik) + özetini çekiyoruz
+ki kullanıcı uygulama içinde okuyabilsin.
 
-GitHub botu (GitHub Actions) bunu 6 saatte bir çalıştırıp JSON'u günceller.
+GitHub botu (Actions) bunu 6 saatte bir çalıştırır.
 
 NOTLAR:
-- Site "utf-8" dese de aslında windows-1254 (Türkçe) kodlaması kullanıyor.
-- Başlıklar harf harf <span class="ara_boya"> etiketleriyle bölünmüş; kelime
-  boşlukları metin düğümü olarak duruyor. get_text().split() ile temizliyoruz
-  (strip=True KULLANMA, boşlukları siler!).
+- Site utf-8 değil windows-1254 (Türkçe) kodlaması kullanıyor.
+- Liste başlıkları harf harf <span class="ara_boya"> ile bölünmüş; get_text().split()
+  ile temizleniyor (strip=True boşlukları siler, KULLANMA).
+- Detay sayfasında: span.icerik_detay (tam metin), ...lbl_ozet (özet),
+  span.icerik_baslik (başlık).
 """
 
 import os
@@ -33,9 +34,8 @@ HEADERS = {
         "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
     )
 }
-TR_SAAT = timezone(timedelta(hours=3))   # Türkiye saati
+TR_SAAT = timezone(timedelta(hours=3))
 
-# Ay numarasını kısa Türkçe ada çevirir (tarih rozeti için)
 AYLAR = {
     "01": "Oca", "02": "Şub", "03": "Mar", "04": "Nis",
     "05": "May", "06": "Haz", "07": "Tem", "08": "Ağu",
@@ -54,57 +54,78 @@ def _tam_link(href: str) -> str:
     return BASE_URL + href.lstrip("/")
 
 
-def _temiz_baslik(hucre) -> str:
-    """Harf harf bölünmüş başlığı temiz metne çevirir."""
+def _temiz(hucre) -> str:
     # strip=True YOK: kelime boşlukları korunmalı
     return " ".join(hucre.get_text().split())
 
 
 def _gun_ay(tarih: str):
-    """'03.09.2026' -> ('03', 'Eyl')"""
-    parcalar = tarih.split(".")
-    if len(parcalar) >= 2:
-        return parcalar[0], AYLAR.get(parcalar[1], parcalar[1])
+    p = tarih.split(".")
+    if len(p) >= 2:
+        return p[0], AYLAR.get(p[1], p[1])
     return "", ""
+
+
+def detay_getir(url: str):
+    """Detay sayfasından (özet, tam_metin) döndürür. Hata olursa ('', '')."""
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=15)
+        r.encoding = "windows-1254"
+        s = BeautifulSoup(r.text, "html.parser")
+
+        detay_el = s.select_one(".icerik_detay") or s.select_one("[id$='lbl_detay']")
+        ozet_el = s.select_one("[id$='lbl_ozet']") or s.select_one(".icerik_ozet")
+
+        metin = detay_el.get_text("\n", strip=True) if detay_el else ""
+        ozet = ozet_el.get_text(" ", strip=True) if ozet_el else ""
+
+        # 3+ boş satırı 2'ye indir
+        metin = re.sub(r"\n{3,}", "\n\n", metin).strip()
+        return ozet, metin
+    except Exception:
+        return "", ""
 
 
 def verileri_cek() -> dict:
     cevap = requests.get(ARSIV_URL, headers=HEADERS, timeout=20)
     cevap.raise_for_status()
-    cevap.encoding = "windows-1254"          # Türkçe için ŞART
+    cevap.encoding = "windows-1254"
     soup = BeautifulSoup(cevap.text, "html.parser")
 
     duyurular, haberler = [], []
-
     for a in soup.select("a.truncate[href*='Icerik/']"):
         satir = a.find_parent("tr")
         if not satir:
             continue
-        hucreler = satir.find_all("td")
-        if len(hucreler) < 3:
+        tds = satir.find_all("td")
+        if len(tds) < 3:
             continue
-
         href = a.get("href", "")
-        baslik = _temiz_baslik(hucreler[0])
-        kategori = hucreler[1].get_text(strip=True)
-        tarih = hucreler[2].get_text(strip=True)
+        kategori = tds[1].get_text(strip=True)
+        tarih = tds[2].get_text(strip=True)
         gun, ay = _gun_ay(tarih)
-
         oge = {
             "id": _icerik_id(href),
-            "baslik": baslik,
-            "tarih": tarih,          # 03.09.2026
-            "gun": gun,              # 03
-            "ay": ay,                # Eyl
+            "baslik": _temiz(tds[0]),
+            "tarih": tarih,
+            "gun": gun,
+            "ay": ay,
             "kategori": kategori,
             "link": _tam_link(href),
         }
-
         if kategori == "Duyuru":
             duyurular.append(oge)
         elif kategori == "Haber":
             haberler.append(oge)
-        # Etkinlik/Konferans/Seminer vb. şimdilik almıyoruz
+
+    # Her içeriğin tam metnini (uygulama içi okuma için) çek
+    hepsi = duyurular + haberler
+    for i, oge in enumerate(hepsi, 1):
+        ozet, icerik = detay_getir(oge["link"])
+        oge["ozet"] = ozet
+        oge["icerik"] = icerik
+        print(f"  detay {i}/{len(hepsi)} alındı", end="\r")
+    print()
 
     return {
         "guncelleme": datetime.now(TR_SAAT).strftime("%d.%m.%Y %H:%M"),

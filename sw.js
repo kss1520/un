@@ -4,7 +4,7 @@
 //  2) Bildirim (push) geldiğinde telefonda gösterir.  (Bildirim kısmı 3. adımda
 //     tam devreye girecek; şimdiden hazır dursun.)
 
-const CACHE = "gibtu-duyuru-v4";
+const CACHE = "gibtu-duyuru-v5";
 const KABUK = [
     ".",
     "index.html",
