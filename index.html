@@ -27,16 +27,21 @@
         <button class="yenile-btn" id="yenileBtn">↻ Yenile</button>
     </div>
 
+    <div class="arama-satir">
+        <input id="aramaKutusu" class="arama-kutu" type="search"
+               placeholder="🔎 Duyuru veya haber ara…" autocomplete="off">
+    </div>
+
     <main>
         <div id="hata" class="hata-kutu" hidden></div>
 
         <section>
-            <h2 class="bolum-baslik">📢 Duyurular</h2>
+            <h2 class="bolum-baslik">📢 Duyurular <span class="sayi" id="duyuruSayi"></span></h2>
             <div class="kart-grid" id="duyurular"></div>
         </section>
 
         <section>
-            <h2 class="bolum-baslik">📰 Haberler</h2>
+            <h2 class="bolum-baslik">📰 Haberler <span class="sayi" id="haberSayi"></span></h2>
             <div class="kart-grid" id="haberler"></div>
         </section>
     </main>

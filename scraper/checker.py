@@ -1,14 +1,20 @@
 # -*- coding: utf-8 -*-
 """
-checker.py — GİBTÜ sitesini okur, DUYURULAR + HABERLER'i ../data/duyurular.json
-dosyasına yazar.
+checker.py — GİBTÜ İçerik Arşivi'ni okur, DUYURULAR + HABERLER'i
+../data/duyurular.json dosyasına yazar.
 
-Bu dosya GitHub'ın ücretsiz botu (GitHub Actions) tarafından günde 1 kez
-çalıştırılacak. Her çalıştığında JSON dosyasını günceller; uygulama da bu
-JSON'u okuyup gösterir.
+Kaynak: https://www.gibtu.edu.tr/IcerikRehberi.aspx
+Bu sayfa bir tablo: her satırda  Başlık | Kategori | Yayın Tarihi  var.
+Ana sayfadaki 8 kayıt yerine buradan ~50 kayıt geliyor; kategori sütunu
+sayesinde Duyuru / Haber ayrımını da yapabiliyoruz.
 
-ÖNEMLİ: gibtu.edu.tr sayfası "utf-8" dese de aslında windows-1254 (Türkçe)
-kodlaması kullanıyor. Doğru kodlamayı vermezsek Türkçe harfler bozulur.
+GitHub botu (GitHub Actions) bunu 6 saatte bir çalıştırıp JSON'u günceller.
+
+NOTLAR:
+- Site "utf-8" dese de aslında windows-1254 (Türkçe) kodlaması kullanıyor.
+- Başlıklar harf harf <span class="ara_boya"> etiketleriyle bölünmüş; kelime
+  boşlukları metin düğümü olarak duruyor. get_text().split() ile temizliyoruz
+  (strip=True KULLANMA, boşlukları siler!).
 """
 
 import os
@@ -20,14 +26,21 @@ import requests
 from bs4 import BeautifulSoup
 
 BASE_URL = "https://www.gibtu.edu.tr/"
+ARSIV_URL = BASE_URL + "IcerikRehberi.aspx"
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
     )
 }
-# Türkiye saati (UTC+3). GitHub botu UTC ile çalışır, biz TR saati gösterelim.
-TR_SAAT = timezone(timedelta(hours=3))
+TR_SAAT = timezone(timedelta(hours=3))   # Türkiye saati
+
+# Ay numarasını kısa Türkçe ada çevirir (tarih rozeti için)
+AYLAR = {
+    "01": "Oca", "02": "Şub", "03": "Mar", "04": "Nis",
+    "05": "May", "06": "Haz", "07": "Tem", "08": "Ağu",
+    "09": "Eyl", "10": "Eki", "11": "Kas", "12": "Ara",
+}
 
 
 def _icerik_id(href: str) -> int:
@@ -41,70 +54,73 @@ def _tam_link(href: str) -> str:
     return BASE_URL + href.lstrip("/")
 
 
-def html_getir() -> str:
-    cevap = requests.get(BASE_URL, headers=HEADERS, timeout=20)
+def _temiz_baslik(hucre) -> str:
+    """Harf harf bölünmüş başlığı temiz metne çevirir."""
+    # strip=True YOK: kelime boşlukları korunmalı
+    return " ".join(hucre.get_text().split())
+
+
+def _gun_ay(tarih: str):
+    """'03.09.2026' -> ('03', 'Eyl')"""
+    parcalar = tarih.split(".")
+    if len(parcalar) >= 2:
+        return parcalar[0], AYLAR.get(parcalar[1], parcalar[1])
+    return "", ""
+
+
+def verileri_cek() -> dict:
+    cevap = requests.get(ARSIV_URL, headers=HEADERS, timeout=20)
     cevap.raise_for_status()
-    cevap.encoding = "windows-1254"   # Türkçe harfler için ŞART
-    return cevap.text
+    cevap.encoding = "windows-1254"          # Türkçe için ŞART
+    soup = BeautifulSoup(cevap.text, "html.parser")
 
+    duyurular, haberler = [], []
 
-def duyurulari_ayikla(soup) -> list:
-    duyurular = []
-    for kart in soup.select("div.card.horizontal.duyuru"):
-        a = kart.find_parent("a")
-        if not a:
+    for a in soup.select("a.truncate[href*='Icerik/']"):
+        satir = a.find_parent("tr")
+        if not satir:
             continue
-        href = a.get("href", "")
-        gun = kart.select_one(".duyuru-tarih .gun")
-        ay = kart.select_one(".duyuru-tarih .ay")
-        baslik = kart.select_one(".duyuru-baslik")
-        duyurular.append({
-            "id": _icerik_id(href),
-            "baslik": baslik.get_text(strip=True) if baslik else "(başlık yok)",
-            "tarih": f"{gun.get_text(strip=True)} {ay.get_text(strip=True)}" if (gun and ay) else "",
-            "link": _tam_link(href),
-        })
-    return duyurular
-
-
-def haberleri_ayikla(soup) -> list:
-    haberler = []
-    for a in soup.select("section.haber_listesi a"):
-        href = a.get("href", "")
-        if "Icerik/" not in href:
+        hucreler = satir.find_all("td")
+        if len(hucreler) < 3:
             continue
-        tarih = a.select_one(".tarih")
-        baslik = a.select_one("h5")
-        ozet = a.select_one(".ozet")
-        haberler.append({
+
+        href = a.get("href", "")
+        baslik = _temiz_baslik(hucreler[0])
+        kategori = hucreler[1].get_text(strip=True)
+        tarih = hucreler[2].get_text(strip=True)
+        gun, ay = _gun_ay(tarih)
+
+        oge = {
             "id": _icerik_id(href),
-            "baslik": baslik.get_text(strip=True) if baslik else "(başlık yok)",
-            "tarih": tarih.get_text(strip=True) if tarih else "",
-            "ozet": ozet.get_text(strip=True) if ozet else "",
+            "baslik": baslik,
+            "tarih": tarih,          # 03.09.2026
+            "gun": gun,              # 03
+            "ay": ay,                # Eyl
+            "kategori": kategori,
             "link": _tam_link(href),
-        })
-    return haberler
+        }
+
+        if kategori == "Duyuru":
+            duyurular.append(oge)
+        elif kategori == "Haber":
+            haberler.append(oge)
+        # Etkinlik/Konferans/Seminer vb. şimdilik almıyoruz
+
+    return {
+        "guncelleme": datetime.now(TR_SAAT).strftime("%d.%m.%Y %H:%M"),
+        "duyurular": duyurular,
+        "haberler": haberler,
+    }
 
 
 def main():
-    html = html_getir()
-    soup = BeautifulSoup(html, "html.parser")
-
-    veri = {
-        "guncelleme": datetime.now(TR_SAAT).strftime("%d.%m.%Y %H:%M"),
-        "duyurular": duyurulari_ayikla(soup),
-        "haberler": haberleri_ayikla(soup),
-    }
-
-    # ../data/duyurular.json yolunu bu dosyaya göre hesapla
+    veri = verileri_cek()
     kok = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     veri_klasoru = os.path.join(kok, "data")
     os.makedirs(veri_klasoru, exist_ok=True)
     dosya = os.path.join(veri_klasoru, "duyurular.json")
-
     with open(dosya, "w", encoding="utf-8") as f:
         json.dump(veri, f, ensure_ascii=False, indent=2)
-
     print(f"{len(veri['duyurular'])} duyuru, {len(veri['haberler'])} haber yazıldı -> {dosya}")
 
 

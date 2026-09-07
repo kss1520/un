@@ -1,111 +1,448 @@
 {
-  "guncelleme": "01.09.2026 15:34",
+  "guncelleme": "07.09.2026 13:24",
   "duyurular": [
+    {
+      "id": 34046,
+      "baslik": "GİBTÜ 'nün Ev Sahipliğinde Gazze ve Filistin Üniversiteleri İçin Anlamlı Buluşma",
+      "tarih": "03.09.2026",
+      "gun": "03",
+      "ay": "Eyl",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/34046/gibtu-nun-ev-sahipliginde-gazze-ve-filistin-universiteleri-icin-anlamli-bulusma"
+    },
     {
       "id": 34040,
       "baslik": "01.09.2026 Tarihli Sözleşmeli Personel İlanı",
-      "tarih": "01 Eyl",
+      "tarih": "01.09.2026",
+      "gun": "01",
+      "ay": "Eyl",
+      "kategori": "Duyuru",
       "link": "https://www.gibtu.edu.tr/Icerik/34040/01092026-tarihli-sozlesmeli-personel-ilani"
+    },
+    {
+      "id": 34015,
+      "baslik": "2026 YKS Yerleştirme Sonuçlarına Göre Kayıt Hakkı Kazanan Öğrencilerimizin Dikkatine",
+      "tarih": "24.08.2026",
+      "gun": "24",
+      "ay": "Ağu",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/34015/2026-yks-yerlestirme-sonuclarina-gore-kayit-hakki-kazanan-ogrencilerimizin-dikkatine"
+    },
+    {
+      "id": 33987,
+      "baslik": "GİBTÜ 'ye Erasmus+ KA131 Kapsamında 101.600 Avro Hibe",
+      "tarih": "19.08.2026",
+      "gun": "19",
+      "ay": "Ağu",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33987/gibtu-ye-erasmus-ka131-kapsaminda-101600-avro-hibe"
     },
     {
       "id": 33980,
       "baslik": "2026-2027 Akademik Yılı 2. Uluslararası Öğrenci Alım Başvuruları Başlamıştır",
-      "tarih": "18 Ağu",
+      "tarih": "18.08.2026",
+      "gun": "18",
+      "ay": "Ağu",
+      "kategori": "Duyuru",
       "link": "https://www.gibtu.edu.tr/Icerik/33980/2026-2027-akademik-yili-2-uluslararasi-ogrenci-alim-basvurulari-baslamistir"
     },
     {
       "id": 33977,
       "baslik": "2026 YKS Sonucunda Üniversitemizi Kazanan Öğrencilerimizin Kayıt İçin Yapması Gereken İşlemler",
-      "tarih": "18 Ağu",
+      "tarih": "18.08.2026",
+      "gun": "18",
+      "ay": "Ağu",
+      "kategori": "Duyuru",
       "link": "https://www.gibtu.edu.tr/Icerik/33977/2026-yks-sonucunda-universitemizi-kazanan-ogrencilerimizin-kayit-icin-yapmasi-gereken-islemler"
+    },
+    {
+      "id": 33976,
+      "baslik": "TS EN ISO 9001:2015 Kalite Yönetim Sistemi 1.Gözlem Saha Ziyareti Başarılı Bir Şekilde Tamamlandı",
+      "tarih": "17.08.2026",
+      "gun": "17",
+      "ay": "Ağu",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33976/ts-en-iso-90012015-kalite-yonetim-sistemi-1gozlem-saha-ziyareti-basarili-bir-sekilde-tamamlandi"
     },
     {
       "id": 33971,
       "baslik": "Gaziantep İslam Bilim ve Teknoloji Üniversitesi 1.062,6 Kwpotopark Tipi Güneş Enerjisi Santrali Yönetim Planı",
-      "tarih": "13 Ağu",
+      "tarih": "13.08.2026",
+      "gun": "13",
+      "ay": "Ağu",
+      "kategori": "Duyuru",
       "link": "https://www.gibtu.edu.tr/Icerik/33971/gaziantep-islam-bilim-ve-teknoloji-universitesi-10626-kwpotopark-tipi-gunes-enerjisi-santrali-yonetim-plani"
     },
     {
       "id": 33947,
       "baslik": "2026-2027 Eğitim-öğretim Yılı Güz Yarıyılı Lisansüstü Programlara Başvuru Değerlendirme Sonuçları",
-      "tarih": "12 Ağu",
+      "tarih": "12.08.2026",
+      "gun": "12",
+      "ay": "Ağu",
+      "kategori": "Duyuru",
       "link": "https://www.gibtu.edu.tr/Icerik/33947/2026-2027-egitim-ogretim-yili-guz-yariyili-lisansustu-programlara-basvuru-degerlendirme-sonuclari"
     },
     {
       "id": 33934,
       "baslik": "2026-2027 Akademik Yılı Uluslararası Öğrenci Yedekler İçin Başvuru Sonuçları Açıklandı!",
-      "tarih": "07 Ağu",
+      "tarih": "07.08.2026",
+      "gun": "07",
+      "ay": "Ağu",
+      "kategori": "Duyuru",
       "link": "https://www.gibtu.edu.tr/Icerik/33934/2026-2027-akademik-yili-uluslararasi-ogrenci-yedekler-icin-basvuru-sonuclari-aciklandi!"
+    },
+    {
+      "id": 33917,
+      "baslik": "GİBTÜ Tıp Fakültesi Öğrencileri Klinik Eğitimlerine Başladı",
+      "tarih": "03.08.2026",
+      "gun": "03",
+      "ay": "Ağu",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33917/gibtu-tip-fakultesi-ogrencileri-klinik-egitimlerine-basladi"
     },
     {
       "id": 33888,
       "baslik": "GİBTÜ, Web of Science Verilerine Göre Yayın Sayısını İki Yılda Yüzde 92 Artırdı",
-      "tarih": "27 Tem",
+      "tarih": "27.07.2026",
+      "gun": "27",
+      "ay": "Tem",
+      "kategori": "Duyuru",
       "link": "https://www.gibtu.edu.tr/Icerik/33888/gibtu-web-of-science-verilerine-gore-yayin-sayisini-iki-yilda-yuzde-92-artirdi"
     },
     {
+      "id": 33887,
+      "baslik": "GİBTÜ 'nün TÜBİTAK 3501 Kariyer Geliştirme Programı Projesi Desteklenmeye Hak Kazandı",
+      "tarih": "27.07.2026",
+      "gun": "27",
+      "ay": "Tem",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33887/gibtu-nun-tubitak-3501-kariyer-gelistirme-programi-projesi-desteklenmeye-hak-kazandi"
+    },
+    {
       "id": 33882,
-      "baslik": "11.07.2026 Tarihli Akademik Personel (  Dr. Öğr. Üyesi  ) Alım İptal İlanı",
-      "tarih": "25 Tem",
+      "baslik": "11.07.2026 Tarihli Akademik Personel ( Dr. Öğr. Üyesi ) Alım İptal İlanı",
+      "tarih": "25.07.2026",
+      "gun": "25",
+      "ay": "Tem",
+      "kategori": "Duyuru",
       "link": "https://www.gibtu.edu.tr/Icerik/33882/11072026-tarihli-akademik-personel--dr-ogr-uyesi--alim-iptal-ilani"
+    },
+    {
+      "id": 33860,
+      "baslik": "ASELSAN Üst Yönetiminden GİBTÜ 'ye Ziyaret",
+      "tarih": "22.07.2026",
+      "gun": "22",
+      "ay": "Tem",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33860/aselsan-ust-yonetiminden-gibtu-ye-ziyaret"
+    },
+    {
+      "id": 33859,
+      "baslik": "GİBTÜ Akademisyenden 13 Yaşındaki Çocuğa 3 Aşamalı Omurga Mucizesi",
+      "tarih": "21.07.2026",
+      "gun": "21",
+      "ay": "Tem",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33859/gibtu-akademisyenden-13-yasindaki-cocuga-3-asamali-omurga-mucizesi"
+    },
+    {
+      "id": 33854,
+      "baslik": "GİBTÜ STRS - Salon Takip ve Rezervasyon Sistemi Kullanıma Açıldı",
+      "tarih": "20.07.2026",
+      "gun": "20",
+      "ay": "Tem",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33854/gibtu-strs-salon-takip-ve-rezervasyon-sistemi-kullanima-acildi"
+    },
+    {
+      "id": 33851,
+      "baslik": "GİBTÜ, Üniversite Aday Öğrencilerle Buluşacak",
+      "tarih": "20.07.2026",
+      "gun": "20",
+      "ay": "Tem",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33851/gibtu-universite-aday-ogrencilerle-bulusacak"
+    },
+    {
+      "id": 33845,
+      "baslik": "Birlik ve Beraberliğin 10. Yılı: Rektörümüz Prof. Dr. Şehmus Demir 'in 15 Temmuz Mesajı",
+      "tarih": "14.07.2026",
+      "gun": "14",
+      "ay": "Tem",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33845/birlik-ve-beraberligin-10-yili-rektorumuz-prof-dr-sehmus-demir-in-15-temmuz-mesaji"
+    },
+    {
+      "id": 33846,
+      "baslik": "GİBTÜ ile İŞKUR İl Müdürlüğü Arasında İŞKUR Kampüs İş Birliği Protokolü İmzalandı",
+      "tarih": "13.07.2026",
+      "gun": "13",
+      "ay": "Tem",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33846/gibtu-ile-iskur-il-mudurlugu-arasinda-iskur-kampus-is-birligi-protokolu-imzalandi"
+    },
+    {
+      "id": 33834,
+      "baslik": "11.07.2026 Tarihli Akademik Personel ( Profesör - Doçent - Dr.öğr.üyesi ) Alım İlanı",
+      "tarih": "11.07.2026",
+      "gun": "11",
+      "ay": "Tem",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33834/11072026-tarihli-akademik-personel--profesor-docent-drogruyesi--alim-ilani"
+    },
+    {
+      "id": 33835,
+      "baslik": "TÜBİTAK Başkanı Prof. Dr. Orhan Aydın 'dan GİBTÜ 'ye Ziyaret",
+      "tarih": "10.07.2026",
+      "gun": "10",
+      "ay": "Tem",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33835/tubitak-baskani-prof-dr-orhan-aydin-dan-gibtu-ye-ziyaret"
+    },
+    {
+      "id": 33831,
+      "baslik": "Uluslararası Öğrenci 1. Başvuru Sonuçları Açıklandı",
+      "tarih": "10.07.2026",
+      "gun": "10",
+      "ay": "Tem",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33831/uluslararasi-ogrenci-1-basvuru-sonuclari-aciklandi"
+    },
+    {
+      "id": 33790,
+      "baslik": "İslam Üniversiteleri Rektörleri I. İstişare Toplantısı Başarıyla Tamamlandı",
+      "tarih": "29.06.2026",
+      "gun": "29",
+      "ay": "Haz",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33790/islam-universiteleri-rektorleri-i-istisare-toplantisi-basariyla-tamamlandi"
+    },
+    {
+      "id": 33776,
+      "baslik": "GİBTÜ de Dünya Uyuşturucu Kullanımı ve Kaçakçılığı ile Mücadele Günü Kapsamında Farkındalık Standı Etkinliği Düzenlendi",
+      "tarih": "24.06.2026",
+      "gun": "24",
+      "ay": "Haz",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33776/gibtu-de-dunya-uyusturucu-kullanimi-ve-kacakciligi-ile-mucadele-gunu-kapsaminda-farkindalik-standi-etkinligi-duzenlendi"
+    },
+    {
+      "id": 33759,
+      "baslik": "Gaziantep İslam Bilim ve Teknoloji Üniversitesinde Eduroam Hizmeti Kullanıma Açıldı",
+      "tarih": "18.06.2026",
+      "gun": "18",
+      "ay": "Haz",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33759/gaziantep-islam-bilim-ve-teknoloji-universitesinde-eduroam-hizmeti-kullanima-acildi"
+    },
+    {
+      "id": 33755,
+      "baslik": "Üniversitemiz Yabancı Diller Yüksekokulu Müdürlüğünde Devir Teslim Süreci Gerçekleşmiştir.",
+      "tarih": "18.06.2026",
+      "gun": "18",
+      "ay": "Haz",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33755/universitemiz-yabanci-diller-yuksekokulu-mudurlugunde-devir-teslim-sureci-gerceklesmistir"
+    },
+    {
+      "id": 33751,
+      "baslik": "İslam Üniversiteleri GİBTÜ 'de Buluşuyor",
+      "tarih": "17.06.2026",
+      "gun": "17",
+      "ay": "Haz",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33751/islam-universiteleri-gibtu-de-bulusuyor"
+    },
+    {
+      "id": 33750,
+      "baslik": "GİBTÜ, YÖK 'te Geleceğin Meslekleri ve Bilim İletişimi Buluşmasında",
+      "tarih": "17.06.2026",
+      "gun": "17",
+      "ay": "Haz",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33750/gibtu-yok-te-gelecegin-meslekleri-ve-bilim-iletisimi-bulusmasinda"
+    },
+    {
+      "id": 33741,
+      "baslik": "Mezun Öğrencilerin Dikkatine!",
+      "tarih": "17.06.2026",
+      "gun": "17",
+      "ay": "Haz",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33741/mezun-ogrencilerin-dikkatine!"
+    },
+    {
+      "id": 33742,
+      "baslik": "Ulusal Staj Programı 2026 Staj İş ve İşlemleri",
+      "tarih": "16.06.2026",
+      "gun": "16",
+      "ay": "Haz",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33742/ulusal-staj-programi-2026-staj-is-ve-islemleri"
+    },
+    {
+      "id": 33716,
+      "baslik": "GİBTÜ Ev Sahipliğinde 53. Düşük Akım Anestezi Kursu Gerçekleştirildi",
+      "tarih": "15.06.2026",
+      "gun": "15",
+      "ay": "Haz",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33716/gibtu-ev-sahipliginde-53-dusuk-akim-anestezi-kursu-gerceklestirildi"
+    },
+    {
+      "id": 33712,
+      "baslik": "GİBTÜ, Üniversite - Sanayi İş Birliğinde Yeni Dönem Başlıyor",
+      "tarih": "12.06.2026",
+      "gun": "12",
+      "ay": "Haz",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33712/gibtu-universite-sanayi-is-birliginde-yeni-donem-basliyor"
+    },
+    {
+      "id": 33674,
+      "baslik": "Vefat ve Bağsağlığı",
+      "tarih": "12.06.2026",
+      "gun": "12",
+      "ay": "Haz",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33674/vefat-ve-bagsagligi"
+    },
+    {
+      "id": 33654,
+      "baslik": "2026-2027 Akademik Yılı Uluslararası Öğrenci Başvuruları Başladı",
+      "tarih": "10.06.2026",
+      "gun": "10",
+      "ay": "Haz",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33654/2026-2027-akademik-yili-uluslararasi-ogrenci-basvurulari-basladi"
+    },
+    {
+      "id": 33643,
+      "baslik": "GİBTÜ 'den Yapay Zekâ Hamlesi",
+      "tarih": "09.06.2026",
+      "gun": "09",
+      "ay": "Haz",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33643/gibtu-den-yapay-zekâ-hamlesi"
+    },
+    {
+      "id": 33641,
+      "baslik": "Elektrik-elektronik Mühendisliği Bitirme Projeleri Sergisi 2026",
+      "tarih": "09.06.2026",
+      "gun": "09",
+      "ay": "Haz",
+      "kategori": "Duyuru",
+      "link": "https://www.gibtu.edu.tr/Icerik/33641/elektrik-elektronik-muhendisligi-bitirme-projeleri-sergisi-2026"
     }
   ],
   "haberler": [
     {
       "id": 34035,
-      "baslik": "GİBTÜ  'de Tercih Çıtası Yükseldi: Taban Puanlarda 30,6 Puanlık Artış",
+      "baslik": "GİBTÜ 'de Tercih Çıtası Yükseldi: Taban Puanlarda 30,6 Puanlık Artış",
       "tarih": "28.08.2026",
-      "ozet": "Gaziantep İslam Bilim ve Teknoloji Üniversitesi’nin (GİBTÜ) 2024–2026 YKS yerleştirme verileri, üniversitenin tercih grafiğindeki yükselişi ortaya koydu. Karşılaştırılabilir lisans programlarının ortalama taban puanı iki ...",
+      "gun": "28",
+      "ay": "Ağu",
+      "kategori": "Haber",
       "link": "https://www.gibtu.edu.tr/Icerik/34035/gibtu-de-tercih-citasi-yukseldi-taban-puanlarda-306-puanlik-artis"
     },
     {
       "id": 34027,
-      "baslik": "GİBTÜ  'de Uluslararasılaşmada Yeni Dönem: İlk KA171 Projeleri Onaylandı",
+      "baslik": "GİBTÜ 'de Uluslararasılaşmada Yeni Dönem: İlk KA171 Projeleri Onaylandı",
       "tarih": "26.08.2026",
-      "ozet": "Gaziantep İslam Bilim ve Teknoloji Üniversitesi (GİBTÜ), uluslararasılaşma hedefleri doğrultusunda önemli bir başarıya daha imza attı. Üniversitemizin 2026-1-TR01-KA171-HED-000438529 numaralı Erasmus+ KA171 Yükseköğretimde ...",
+      "gun": "26",
+      "ay": "Ağu",
+      "kategori": "Haber",
       "link": "https://www.gibtu.edu.tr/Icerik/34027/gibtu-de-uluslararasilasmada-yeni-donem-ilk-ka171-projeleri-onaylandi"
     },
     {
       "id": 34017,
-      "baslik": "Rektörümüz Prof. Dr. Şehmus Demir  'in Mevlid Kandili Mesajı",
+      "baslik": "Rektörümüz Prof. Dr. Şehmus Demir 'in Mevlid Kandili Mesajı",
       "tarih": "24.08.2026",
-      "ozet": "Âlemlere rahmet olarak gönderilen Peygamber Efendimiz Hz. Muhammed Mustafa’nın (s.a.v.) dünyaya teşriflerini idrak ettiğimiz bu mübarek gecede; onun güzel ahlakını, merhametini, adaletini ve kardeşlik anlayışını hayatımıza ...",
+      "gun": "24",
+      "ay": "Ağu",
+      "kategori": "Haber",
       "link": "https://www.gibtu.edu.tr/Icerik/34017/rektorumuz-prof-dr-sehmus-demir-in-mevlid-kandili-mesaji"
     },
     {
       "id": 34001,
       "baslik": "Rektörümüz Prof. Dr. Şehmus Demir, Tügva Gaziantep Yaz Okulları Kapanış Programı 'na Katıldı",
       "tarih": "20.08.2026",
-      "ozet": "Rektörümüz Prof. Dr. Şehmus Demir, TÜGVA Gaziantep Yaz Okulları Kapanış Programı’na katıldı.",
+      "gun": "20",
+      "ay": "Ağu",
+      "kategori": "Haber",
       "link": "https://www.gibtu.edu.tr/Icerik/34001/rektorumuz-prof-dr-sehmus-demir-tugva-gaziantep-yaz-okullari-kapanis-programi-na-katildi"
     },
     {
       "id": 34000,
       "baslik": "Rektörümüz Prof. Dr. Şehmus Demir, \"COP31 Türkiye Buluşmaları - Gaziantep\" Programına Katıldı",
       "tarih": "19.08.2026",
-      "ozet": "Türkiye’nin 9-20 Kasım 2026 tarihlerinde Antalya’da ev sahipliği yapacağı Birleşmiş Milletler İklim Değişikliği Konferansı (COP31) öncesinde gerçekleştirilen “COP31 Türkiye Buluşmaları – Gaziantep” programı, ...",
+      "gun": "19",
+      "ay": "Ağu",
+      "kategori": "Haber",
       "link": "https://www.gibtu.edu.tr/Icerik/34000/rektorumuz-prof-dr-sehmus-demir-cop31-turkiye-bulusmalari-gaziantep-programina-katildi"
     },
     {
       "id": 33997,
-      "baslik": "GİBTÜ  'den Gaziantep Sanayi Odası  'na İş Birliği Ziyareti",
+      "baslik": "GİBTÜ 'den Gaziantep Sanayi Odası 'na İş Birliği Ziyareti",
       "tarih": "19.08.2026",
-      "ozet": "Gaziantep İslam Bilim ve Teknoloji Üniversitesi (GİBTÜ) yönetimi, üniversite-sanayi iş birliğini güçlendirmek ve yükseköğretim ile reel sektör arasındaki etkileşimi artırmak amacıyla Gaziantep Sanayi Odası’nı ...",
+      "gun": "19",
+      "ay": "Ağu",
+      "kategori": "Haber",
       "link": "https://www.gibtu.edu.tr/Icerik/33997/gibtu-den-gaziantep-sanayi-odasi-na-is-birligi-ziyareti"
     },
     {
-      "id": 33987,
-      "baslik": "GİBTÜ  'ye Erasmus+ KA131 Kapsamında 101.600 Avro Hibe",
-      "tarih": "19.08.2026",
-      "ozet": "Gaziantep İslam Bilim ve Teknoloji Üniversitesi (GİBTÜ), uluslararasılaşma ve Avrupa yükseköğretim alanındaki çalışmalarını güçlendirmeye devam ediyor.",
-      "link": "https://www.gibtu.edu.tr/Icerik/33987/gibtu-ye-erasmus-ka131-kapsaminda-101600-avro-hibe"
+      "id": 33789,
+      "baslik": "Gaziantep 'te Antroposen ve Ekosinema Söyleşisi!",
+      "tarih": "25.06.2026",
+      "gun": "25",
+      "ay": "Haz",
+      "kategori": "Haber",
+      "link": "https://www.gibtu.edu.tr/Icerik/33789/gaziantep-te-antroposen-ve-ekosinema-soylesisi!"
     },
     {
-      "id": 33976,
-      "baslik": "TS EN ISO 9001:2015 Kalite Yönetim Sistemi 1.Gözlem Saha Ziyareti Başarılı Bir Şekilde Tamamlandı",
-      "tarih": "17.08.2026",
-      "ozet": "Gaziantep İslam Bilim ve Teknoloji Üniversitesi (GİBTÜ) Türk Standartları Enstitüsünün (TSE) 9-12 Eylül 2025 tarihlerinde üniversitemize gerçekleştirdiği saha ziyaretlerinde, GİBTÜ’nün akademik ...",
-      "link": "https://www.gibtu.edu.tr/Icerik/33976/ts-en-iso-90012015-kalite-yonetim-sistemi-1gozlem-saha-ziyareti-basarili-bir-sekilde-tamamlandi"
+      "id": 33785,
+      "baslik": "GİBTÜ, The Sustainability Impact Ratings 2026\"da Yükselişini Sürdürüyor!",
+      "tarih": "25.06.2026",
+      "gun": "25",
+      "ay": "Haz",
+      "kategori": "Haber",
+      "link": "https://www.gibtu.edu.tr/Icerik/33785/gibtu-the-sustainability-impact-ratings-2026da-yukselisini-surduruyor!"
+    },
+    {
+      "id": 33667,
+      "baslik": "GİBTÜ Techno Day de Geleceğin Teknolojileri Sahneye Çıktı...",
+      "tarih": "11.06.2026",
+      "gun": "11",
+      "ay": "Haz",
+      "kategori": "Haber",
+      "link": "https://www.gibtu.edu.tr/Icerik/33667/gibtu-techno-day-de-gelecegin-teknolojileri-sahneye-cikti"
+    },
+    {
+      "id": 33651,
+      "baslik": "GİBTÜ Zero Waste Forum 2026 'da",
+      "tarih": "10.06.2026",
+      "gun": "10",
+      "ay": "Haz",
+      "kategori": "Haber",
+      "link": "https://www.gibtu.edu.tr/Icerik/33651/gibtu-zero-waste-forum-2026-da"
+    },
+    {
+      "id": 33644,
+      "baslik": "GİBTÜ 'lü Akademisyen Doç. Dr. Osman Hansu, TEKNOFEST Danışma Kurulu Üyeliğine Seçildi",
+      "tarih": "09.06.2026",
+      "gun": "09",
+      "ay": "Haz",
+      "kategori": "Haber",
+      "link": "https://www.gibtu.edu.tr/Icerik/33644/gibtu-lu-akademisyen-doc-dr-osman-hansu-teknofest-danisma-kurulu-uyeligine-secildi"
+    },
+    {
+      "id": 33640,
+      "baslik": "Türkiye Yüzyılı 'nda GİBTÜ 'den ISAS 2026 Adımı",
+      "tarih": "08.06.2026",
+      "gun": "08",
+      "ay": "Haz",
+      "kategori": "Haber",
+      "link": "https://www.gibtu.edu.tr/Icerik/33640/turkiye-yuzyili-nda-gibtu-den-isas-2026-adimi"
     }
   ]
 }

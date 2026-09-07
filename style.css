@@ -108,16 +108,19 @@ main { max-width: 1000px; margin: 0 auto; padding: 8px 16px 40px; }
 /* ===== Duyuru kartı (tarih rozeti solda) ===== */
 .duyuru-kart { gap: 14px; align-items: flex-start; }
 .tarih-rozet {
-    flex: 0 0 58px;
+    flex: 0 0 52px;
     background: var(--lacivert);
     color: #fff;
     border-radius: 10px;
-    padding: 10px 6px;
+    padding: 8px 4px;
     text-align: center;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.25;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.1;
 }
+.rz-gun { font-size: 20px; font-weight: 800; }
+.rz-ay  { font-size: 12px; font-weight: 600; opacity: .9; margin-top: 2px; }
 
 /* ===== Haber kartı (tarih üstte) ===== */
 .haber-kart { flex-direction: column; gap: 8px; }
@@ -158,3 +161,55 @@ footer {
     padding: 24px 16px 40px;
 }
 footer a { color: var(--petrol); font-weight: 600; }
+
+/* ===== Arama kutusu ===== */
+.arama-satir {
+    max-width: 1000px;
+    margin: 12px auto 0;
+    padding: 0 16px;
+}
+.arama-kutu {
+    width: 100%;
+    padding: 11px 14px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--metin);
+    background: var(--kart);
+    border: 1px solid var(--kenarlik);
+    border-radius: 999px;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+.arama-kutu:focus {
+    border-color: var(--petrol);
+    box-shadow: 0 0 0 3px rgba(31,111,120,.15);
+}
+
+/* ===== Bölüm başlığındaki sayaç ===== */
+.bolum-baslik .sayi {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gri);
+}
+
+/* ===== "YENİ" rozeti ===== */
+.yeni-rozet {
+    display: inline-block;
+    background: #e11d48;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .4px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    margin-bottom: 6px;
+}
+
+/* Haber kartında tarih + YENİ aynı satırda */
+.haber-ust {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.haber-ust .yeni-rozet { margin-bottom: 0; }
