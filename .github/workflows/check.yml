@@ -1,0 +1,36 @@
+name: Duyuru kontrol
+
+# Ne zaman çalışsın?
+on:
+  schedule:
+    - cron: "0 6 * * *"   # her gün 06:00 UTC (~09:00 Türkiye) — günde 1 kez
+  workflow_dispatch: {}    # istersek elle de çalıştırabilelim (butonla)
+
+permissions:
+  contents: write          # data/duyurular.json'u repoya yazabilmek için
+
+jobs:
+  kontrol:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repoyu al
+        uses: actions/checkout@v4
+
+      - name: Python kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Gerekli paketleri kur
+        run: pip install -r requirements.txt
+
+      - name: Siteyi kontrol et ve JSON'u güncelle
+        run: python scraper/checker.py
+
+      - name: Değişiklik varsa kaydet
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/duyurular.json
+          git diff --staged --quiet || git commit -m "Duyurular güncellendi (otomatik)"
+          git push

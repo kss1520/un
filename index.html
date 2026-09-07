@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#14315e">
+    <title>GİBTÜ Duyuru Takip</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="ust-bar">
+        <div class="ic">
+            <div class="logo">G</div>
+            <div class="baslik-grup">
+                <h1>GİBTÜ Duyuru Takip</h1>
+                <p>Gaziantep İslam Bilim ve Teknoloji Üniversitesi — duyuru &amp; haberler</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="arac-cubugu">
+        <span class="guncelleme">Son güncelleme: <strong id="guncelleme">—</strong></span>
+        <button class="yenile-btn" id="yenileBtn">↻ Yenile</button>
+    </div>
+
+    <main>
+        <div id="hata" class="hata-kutu" hidden></div>
+
+        <section>
+            <h2 class="bolum-baslik">📢 Duyurular</h2>
+            <div class="kart-grid" id="duyurular"></div>
+        </section>
+
+        <section>
+            <h2 class="bolum-baslik">📰 Haberler</h2>
+            <div class="kart-grid" id="haberler"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Bu bir <strong>öğrenci projesidir</strong>, resmî site değildir.
+           Tüm içerikler <a href="https://www.gibtu.edu.tr/" target="_blank" rel="noopener">gibtu.edu.tr</a> adresinden alınmıştır.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
